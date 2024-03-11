@@ -1,15 +1,49 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import exceptions.InvalidIndex;
+import exceptions.InvalidNumber;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
+    public static void main(String[] args) {
+        int[] randomNumbers = new int[5];
+        Random random = new Random();
+        for (int i = 0; i < randomNumbers.length; i++) {
+            randomNumbers[i] = random.nextInt(10) + 1;
+            System.out.println((i + 1) + " randomNumber: " + randomNumbers[i]);
         }
+        log.info("Numeri generati correttamente");
+
+        int index;
+        int number;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            try {
+                System.out.println("Inserisci l'indice dell' array su cui vuoi modificare il numero:");
+                index = scanner.nextInt();
+                if (index < 0 || index >= randomNumbers.length) {
+                    throw new InvalidIndex(index);
+                }
+
+                System.out.println("Inserisci il nuovo numero:");
+                number = scanner.nextInt();
+                if (number < 1 || number > 10) {
+                    throw new InvalidNumber(number);
+                }
+
+                System.out.println("Il numero " + randomNumbers[index] + " è stato modificato in " + number);
+                randomNumbers[index] = number;
+                for (int i = 0; i < randomNumbers.length; i++) {
+                    System.out.println((i + 1) + " randomNumber: " + randomNumbers[i]);
+                }
+            } catch (InvalidIndex | InvalidNumber e) {
+                throw new RuntimeException(e);
+            }
+        } while (true);
     }
 }
+
