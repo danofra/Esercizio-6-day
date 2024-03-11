@@ -17,8 +17,9 @@ public class Main {
             }
             System.out.println("Inserisci il numero di KM percorsi:");
             kilometers = scanner.nextInt();
-            int cal = litres / kilometers;
-            System.out.println("Il consumo medio è di " + cal + " l/km.");
+            int cal = kilometers / litres;
+            log.info("Il consumo medio è di " + cal + " l/km.");
+
 
         } catch (InvalidNumber e) {
             throw new RuntimeException(e);
