@@ -24,7 +24,7 @@ void stampaSaldo() {
 
     void preleva(double x) throws BancaException {
         if (nMovimenti < maxMovimenti) {
-            if (saldo < 0) {
+            if (saldo <= 0) {
                 throw new BancaException("Conto in rosso!");
             } else if ( prelievo > saldo) {
                  throw new BancaException("Saldo insufficiente!");
