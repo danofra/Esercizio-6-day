@@ -58,6 +58,17 @@
             </llm>
           </llm>
         </chat>
+        <chat>
+          <accountId value="VXNlcjoyNjY3ODA=" />
+          <internalId value="8f0a7012-f1d5-459e-a45a-5f884290ca8a" />
+          <llm>
+            <llm>
+              <model value="anthropic/claude-2.0" />
+              <provider value="Anthropic" />
+              <title value="Claude 2.0" />
+            </llm>
+          </llm>
+        </chat>
       </list>
     </chats>
   </component>
